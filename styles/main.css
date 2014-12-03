@@ -1,0 +1,41 @@
+.tile {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 210px;
+    border-radius: 5px;
+}
+
+.clock {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    bottom: 20px;
+    right: 10px;
+}
+
+.plate {
+    background: url(/images/plate.svg);
+}
+
+.hours {
+    background: url(/images/arrow_h.svg);
+}
+
+.minutes {
+    background: url(/images/arrow_m.svg);
+}
+.seconds {
+    background: url(/images/arrow_s.svg);
+    transition: transform 1s linear;
+}
+
+.over {
+    background: url(/images/over.svg);
+}
+
+.layer {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+}
