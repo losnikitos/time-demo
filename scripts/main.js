@@ -1,12 +1,14 @@
 window.app = {
     init: function () {
         var self = this;
-        for (var i = 0; i < 10; i++) {
-            var domElem = $('.clock').get(i);
-            var offset = i * 1000 * 60 * 60; //i hours
-            var clock = new DivsClock(domElem, offset, Date.now());
-            self.clocks.push(clock);
-        }
+        this.showClocks([localStorage.getItem('clock-type') || 'svg']);
+
+        $('.nav li').click(function(){
+            $('.nav .active').removeClass('active');
+            $(this).addClass('active');
+            var type = $(this).data('type');
+            self.showClocks(type);
+        });
 
         //tick every 1s
         setInterval(function () {
@@ -14,21 +16,36 @@ window.app = {
         }, 1000);
     },
 
+    showClocks: function(type) {
+        var clockClass = {
+            'svg': SvgClock,
+            'divs': DivsClock,
+            'canvas': CanvasClock
+        }[type];
+
+        this.clocks = [];
+        for (var i = 0; i < 10; i++) {
+            var domElem = $('.clock').get(i);
+            $(domElem).empty();
+            var offset = i * 1000 * 60 * 60; //i hours
+            var clock = new clockClass(domElem, offset, Date.now());
+            this.clocks.push(clock);
+        }
+
+        localStorage.setItem('clock-type', type);
+    },
+
     tick: function (utctime) {
         var self = this;
         self.clocks.forEach(function (clock) {
             clock.showTime(utctime, 1000)
         });
-    },
-
-    clocks: []
+    }
 };
 
 $(function () {
     app.init();
 });
-
-
 
 //var strategies = {
 //    everyFrame: function () {
