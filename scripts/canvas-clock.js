@@ -7,9 +7,34 @@ var CanvasClock = $.inherit(Clock, {
         ctx.translate(75, 75);
     },
 
-    showTime: function() {
+    smallTick: function (utctime) {
+        var self = this;
+        var localtime = utctime + self.offset;
+        self.showTime(localtime, 1000);
+        //console.log('smalltick', localtime);
+    },
+
+    tick: function() {
+        //do nothing
+    },
+
+    showTime: function(localtime, duration) {
         this.context.clearRect(-75,-75,150, 150);
-        this.__base.apply(this, arguments);
+
+        var time = new Date(localtime + duration);
+        var h = time.getUTCHours(), m = time.getUTCMinutes(), s = time.getUTCSeconds(), ms = time.getUTCMilliseconds();
+
+        //console.log(time, duration);
+        if (m == 0) {
+            this.full.minutes++
+        }
+        if (s == 0) {
+            this.full.seconds++
+        }
+
+        this.setHours(360 / 12 * ((h + m / 60) % 12));
+        this.setMinutes(this.full.minutes * 360 + 360 / 60 * m);
+        this.setSeconds(this.full.seconds * 360 + 360 / 60 * (s + ms/1000), duration);
     },
 
     setHours: function (angle) {

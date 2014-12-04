@@ -3,10 +3,20 @@ window.app = {
         var self = this;
         var type = [localStorage.getItem('clock-type') || 'svg'];
         this.showClocks(type);
+        this.utctime = Date.now();
 
+        this.enableMenu(type);
+
+        (function animloop(){
+            self.tick(Date.now());
+            requestAnimFrame(animloop);
+        })();
+    },
+
+    enableMenu: function(type) {
+        var self = this;
         $('.nav .active').removeClass('active');
         $('.nav').find('li[data-type=' + type + ']').addClass('active');
-
 
         $('.nav li').click(function () {
             $('.nav .active').removeClass('active');
@@ -14,11 +24,6 @@ window.app = {
             var type = $(this).data('type');
             self.showClocks(type);
         });
-
-        //tick every 1s
-        setInterval(function () {
-            self.tick(Date.now())
-        }, 1000);
     },
 
     showClocks: function (type) {
@@ -43,9 +48,22 @@ window.app = {
     },
 
     tick: function (utctime) {
-        var self = this;
-        self.clocks.forEach(function (clock) {
-            clock.tick(utctime)
+        var delta = utctime - this.utctime;
+        var ms = (this.utctime % 1000) || 1000;
+        this.utctime = utctime;
+
+        // Синхронизация, если тики слишком редко
+        if (delta > 2000 || delta < 0) {
+            console.log('SYNC: delta too big', delta);
+        }
+
+        this.clocks.forEach(function(clock) {
+            clock.smallTick(utctime);
+
+            // если перешагнули целое число секунд
+            if (ms + delta > 1000) {
+                clock.tick(utctime)
+            }
         });
     }
 };
@@ -53,6 +71,15 @@ window.app = {
 $(function () {
     app.init();
 });
+
+// Shim layer with setTimeout fallback by Paul Irish
+window.requestAnimFrame = (function(){
+    return  window.requestAnimationFrame       ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame    ||
+        window.msRequestAnimationFrame     ||
+        function (c) { window.setTimeout(c, 1000 / 60) }
+})();
 
 //var strategies = {
 //    everyFrame: function () {
