@@ -1,17 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100 100">
+    <ellipse rx="50" ry="50" cx="50" cy="50" fill="#f6f5f3"></ellipse>
     <g id="ticks">
-        <rect id="_x31_2" x="49" fill="#4C4C4C" width="2" height="5"/>
-        <rect id="_x31_1" x="25.3" y="6.4" transform="matrix(0.8662 -0.4997 0.4997 0.8662 -0.911 14.3092)" fill="#4C4C4C" width="2" height="5"/>
-        <rect id="_x31_0" x="7.9" y="23.7" transform="matrix(0.5003 -0.8659 0.8659 0.5003 -18.285 20.793)" fill="#4C4C4C" width="2" height="5"/>
-        <rect id="_x39_" x="0" y="49" fill="#4C4C4C" width="5" height="2"/>
-        <rect id="_x38_" x="7.9" y="71.2" transform="matrix(-0.4998 -0.8661 0.8661 -0.4998 -50.5846 118.2665)" fill="#4C4C4C" width="2" height="5"/>
-        <rect id="_x37_" x="25.2" y="88.6" transform="matrix(-0.8659 -0.5002 0.5002 -0.8659 3.3814 183.1687)" fill="#4C4C4C" width="2" height="5"/>
-        <rect id="_x36_" x="49" y="95" fill="#4C4C4C" width="2" height="5"/>
-        <rect id="_x35_" x="72.7" y="88.6" transform="matrix(-0.8661 0.4999 -0.4999 -0.8661 183.1711 133.2142)" fill="#4C4C4C" width="2" height="5"/>
-        <rect id="_x34_" x="90.1" y="71.3" transform="matrix(-0.5001 0.866 -0.866 -0.5001 200.5788 31.7222)" fill="#4C4C4C" width="2" height="5"/>
-        <rect id="_x33__1_" x="95" y="49" fill="#4C4C4C" width="5" height="2"/>
-        <rect id="_x32__1_" x="90.1" y="23.8" transform="matrix(0.4999 0.8661 -0.8661 0.4999 68.3098 -65.8027)" fill="#4C4C4C" width="2" height="5"/>
-        <rect id="_x31__1_" x="72.8" y="6.4" transform="matrix(0.866 0.5 -0.5 0.866 14.3144 -35.6898)" fill="#4C4C4C" width="2" height="5"/>
+        <rect width="2.5" height="5" x="48.75" y="9" transform="rotate(330 50 50)" fill="#c5c5c4"></rect>
+        <rect width="2.5" height="5" x="48.75" y="9" transform="rotate(300 50 50)" fill="#c5c5c4"></rect>
+        <rect width="2.5" height="5" x="48.75" y="9" transform="rotate(270 50 50)" fill="#c5c5c4"></rect>
+        <rect width="2.5" height="5" x="48.75" y="9" transform="rotate(240 50 50)" fill="#c5c5c4"></rect>
+        <rect width="2.5" height="5" x="48.75" y="9" transform="rotate(210 50 50)" fill="#c5c5c4"></rect>
+        <rect width="2.5" height="5" x="48.75" y="9" transform="rotate(180 50 50)" fill="#c5c5c4"></rect>
+        <rect width="2.5" height="5" x="48.75" y="9" transform="rotate(150 50 50)" fill="#c5c5c4"></rect>
+        <rect width="2.5" height="5" x="48.75" y="9" transform="rotate(120 50 50)" fill="#c5c5c4"></rect>
+        <rect width="2.5" height="5" x="48.75" y="9" transform="rotate(90 50 50)" fill="#c5c5c4"></rect>
+        <rect width="2.5" height="5" x="48.75" y="9" transform="rotate(60 50 50)" fill="#c5c5c4"></rect>
+        <rect width="2.5" height="5" x="48.75" y="9" transform="rotate(30 50 50)" fill="#c5c5c4"></rect>
+        <rect width="2.5" height="5" x="48.75" y="9" fill="#c5c5c4"></rect>
     </g>
     <ellipse id="SvgjsEllipse1021" rx="3.75" ry="3.75" cx="50" cy="50" class="arrow" fill="#212121"></ellipse>
 </svg>

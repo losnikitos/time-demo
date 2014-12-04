@@ -1,9 +1,14 @@
 window.app = {
     init: function () {
         var self = this;
-        this.showClocks([localStorage.getItem('clock-type') || 'svg']);
+        var type = [localStorage.getItem('clock-type') || 'svg'];
+        this.showClocks(type);
 
-        $('.nav li').click(function(){
+        $('.nav .active').removeClass('active');
+        $('.nav').find('li[data-type=' + type + ']').addClass('active');
+
+
+        $('.nav li').click(function () {
             $('.nav .active').removeClass('active');
             $(this).addClass('active');
             var type = $(this).data('type');
@@ -16,19 +21,21 @@ window.app = {
         }, 1000);
     },
 
-    showClocks: function(type) {
+    showClocks: function (type) {
         var clockClass = {
             'svg': SvgClock,
             'divs': DivsClock,
             'canvas': CanvasClock
         }[type];
 
+        var now = Date.now();
+
         this.clocks = [];
         for (var i = 0; i < 10; i++) {
             var domElem = $('.clock').get(i);
             $(domElem).empty();
             var offset = i * 1000 * 60 * 60; //i hours
-            var clock = new clockClass(domElem, offset, Date.now());
+            var clock = new clockClass(domElem, offset, now);
             this.clocks.push(clock);
         }
 
@@ -38,7 +45,7 @@ window.app = {
     tick: function (utctime) {
         var self = this;
         self.clocks.forEach(function (clock) {
-            clock.showTime(utctime, 1000)
+            clock.tick(utctime)
         });
     }
 };

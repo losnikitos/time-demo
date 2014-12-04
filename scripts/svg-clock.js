@@ -63,6 +63,7 @@ var SvgClock = $.inherit(Clock, {
             this.minutes.rotate(angle, 50, 50);
         },
         setSeconds: function (angle, duration) {
+            console.log(duration);
             if (duration) {
                 this.seconds.animate(duration, '-').rotate(angle, 50, 50);
             }
