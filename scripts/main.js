@@ -5,10 +5,16 @@ window.app = {
         this.showClocks(type);
         this.utctime = Date.now();
         this.fps = 0;
+        this.avgFps = 0;
+        this.avgCount = 0;
 
         this.enableMenu(type);
+        this.startRepaint();
+    },
 
+    startRepaint: function() {
         var repaint = $('input[type=checkbox]')[0].checked;
+        var self = this;
 
         (function animloop(){
             self.tickk(Date.now());
@@ -75,10 +81,18 @@ window.app = {
         $(app).trigger('smallTick', utctime);
 
         if (ms + delta > 1000) {
-            $('.fps').text(this.fps + ' fps');
-            this.fps = 0;
+            this.countFps();
             $(app).trigger('tick', utctime);
         }
+    },
+
+    countFps: function(){
+        this.avgFps+=this.fps;
+        this.avgCount++;
+        $('.fps').text(this.fps + ' fps');
+        $('.avg').text('(' + Math.round(this.avgFps/this.avgCount) + ' avg)');
+
+        this.fps = 0;
     }
 };
 

@@ -27,7 +27,12 @@
 }
 .seconds {
     background: url(/images/arrow_s.svg);
+
     transition: transform 1s linear;
+    -webkit-transition: -webkit-transform 1s linear;
+    -moz-transition: -moz-transform 1s linear;
+    -o-transition: -o-transform 1s linear;
+    -ms-transition: -ms-transform 1s linear;
 }
 
 .over {
@@ -43,4 +48,10 @@
 .fps {
     color: #245269;
     margin-left: .5em;
+}
+
+.avg {
+    color: #aaa;
+    margin-left: .5em;
+    font-size: small;
 }

@@ -12,14 +12,14 @@ var DivsClock = $.inherit(Clock, {
     },
 
     setHours: function (angle) {
-        this.hours.css({'transform':   'rotateZ(' + angle + 'deg)'})
+        this.hours.css({transform:   'rotateZ(' + angle + 'deg)'})
     },
 
     setMinutes: function (angle) {
-        this.minutes.css({'transform':   'rotateZ(' + angle + 'deg)'})
+        this.minutes.css({transform:   'rotateZ(' + angle + 'deg)'})
     },
 
     setSeconds: function (angle, duration) {
-        this.seconds.css({'transform':   'rotateZ(' + angle + 'deg)'})
+        this.seconds.css({transform:   'rotateZ(' + angle + 'deg)'})
     }
 });
