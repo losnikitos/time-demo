@@ -19,7 +19,7 @@ window.app = {
         (function animloop(){
             self.tickk(Date.now());
             if(repaint) {
-                setTimeout(animloop, 0);
+                setTimeout(animloop);
             } else {
                 requestAnimFrame(animloop);
             }
