@@ -8,7 +8,7 @@ window.app = {
         this.enableMenu(type);
 
         (function animloop(){
-            self.tick(Date.now());
+            self.tickk(Date.now());
             requestAnimFrame(animloop);
         })();
     },
@@ -30,8 +30,11 @@ window.app = {
         var clockClass = {
             'svg': SvgClock,
             'divs': DivsClock,
-            'canvas': CanvasClock
+            'canvas': CanvasClock,
+            'opt-canvas': OptimizedCanvasClock
         }[type];
+
+        clockClass.globalInit();
 
         var now = Date.now();
 
@@ -47,7 +50,7 @@ window.app = {
         localStorage.setItem('clock-type', type);
     },
 
-    tick: function (utctime) {
+    tickk: function (utctime) {
         var delta = utctime - this.utctime;
         var ms = (this.utctime % 1000) || 1000;
         this.utctime = utctime;
@@ -57,14 +60,11 @@ window.app = {
             console.log('SYNC: delta too big', delta);
         }
 
-        this.clocks.forEach(function(clock) {
-            clock.smallTick(utctime);
+        $(app).trigger('smallTick', utctime);
 
-            // если перешагнули целое число секунд
-            if (ms + delta > 1000) {
-                clock.tick(utctime)
-            }
-        });
+        if (ms + delta > 1000) {
+            $(app).trigger('tick', utctime);
+        }
     }
 };
 

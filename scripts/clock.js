@@ -12,7 +12,7 @@ var Clock = $.inherit({
         }
     },
 
-    tick: function (utctime) {
+    tick: function (e, utctime) {
         var self = this;
         var localtime = utctime + self.offset;
         self.showTime(localtime, 1000);
@@ -48,6 +48,10 @@ var Clock = $.inherit({
     },
 
     setSeconds: function(angle, duration) {
+        //override me
+    }
+}, {
+    globalInit: function() {
         //override me
     }
 });

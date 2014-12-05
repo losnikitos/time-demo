@@ -1,21 +1,21 @@
 var CanvasClock = $.inherit(Clock, {
 
+    __constructor: function() {
+        this.__base.apply(this,arguments);
+        $(app).on('smallTick', this.tick.bind(this));
+    },
+
     draw: function (domElem) {
-        $(domElem).html('<canvas width="150" height="150"/>');
+        $(domElem).html('<div class="layer plate"></div><canvas class="layer" width="150" height="150"/>');
         this.canvas = $(domElem).find('canvas').get(0);
         var ctx = this.context = this.canvas.getContext("2d");
         ctx.translate(75, 75);
     },
 
-    smallTick: function (utctime) {
+    tick: function(e,utctime) {
         var self = this;
         var localtime = utctime + self.offset;
         self.showTime(localtime, 1000);
-        //console.log('smalltick', localtime);
-    },
-
-    tick: function() {
-        //do nothing
     },
 
     showTime: function(localtime, duration) {
@@ -69,7 +69,7 @@ var CanvasClock = $.inherit(Clock, {
         ctx.save();
         ctx.rotate(normalize(angle));
         ctx.strokeStyle = "red";
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(-15, 0);
         ctx.lineTo(75, 0);
