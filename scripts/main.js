@@ -4,6 +4,7 @@ window.app = {
         var type = [localStorage.getItem('clock-type') || 'svg'];
         this.showClocks(type);
         this.utctime = Date.now();
+        this.fps = 0;
 
         this.enableMenu(type);
 
@@ -51,6 +52,7 @@ window.app = {
     },
 
     tickk: function (utctime) {
+        this.fps++;
         var delta = utctime - this.utctime;
         var ms = (this.utctime % 1000) || 1000;
         this.utctime = utctime;
@@ -63,6 +65,8 @@ window.app = {
         $(app).trigger('smallTick', utctime);
 
         if (ms + delta > 1000) {
+            console.log(this.fps,'fps');
+            this.fps = 0;
             $(app).trigger('tick', utctime);
         }
     }

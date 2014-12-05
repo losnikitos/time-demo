@@ -48,7 +48,6 @@ var CanvasClock = $.inherit(Clock, {
         ctx.lineTo(40, 0);
         ctx.stroke();
         ctx.restore();
-
     },
 
     setMinutes: function (angle) {
