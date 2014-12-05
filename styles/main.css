@@ -39,3 +39,8 @@
     width: 150px;
     height: 150px;
 }
+
+.fps {
+    color: #245269;
+    margin-left: .5em;
+}

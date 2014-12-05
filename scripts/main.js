@@ -8,10 +8,20 @@ window.app = {
 
         this.enableMenu(type);
 
+        var repaint = $('input[type=checkbox]')[0].checked;
+
         (function animloop(){
             self.tickk(Date.now());
-            requestAnimFrame(animloop);
+            if(repaint) {
+                setTimeout(animloop, 0);
+            } else {
+                requestAnimFrame(animloop);
+            }
         })();
+
+        $('input[type=checkbox]').change(function() {
+            repaint = this.checked;
+        })
     },
 
     enableMenu: function(type) {
@@ -65,7 +75,7 @@ window.app = {
         $(app).trigger('smallTick', utctime);
 
         if (ms + delta > 1000) {
-            console.log(this.fps,'fps');
+            $('.fps').text(this.fps + ' fps');
             this.fps = 0;
             $(app).trigger('tick', utctime);
         }
