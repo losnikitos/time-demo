@@ -1,9 +1,4 @@
 var SvgClock = $.inherit(Clock, {
-        __constructor: function() {
-           this.__base.apply(this,arguments);
-           $(app).on('tick', this.tick.bind(this));
-        },
-
         draw: function (domElem) {
             var self = this;
             var svg = self.svg = SVG(domElem).viewbox(0, 0, 100, 100);

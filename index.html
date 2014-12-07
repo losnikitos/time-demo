@@ -13,7 +13,9 @@
 
     <script src="/scripts/clock.js"></script>
     <script src="/scripts/svg-clock.js"></script>
+    <script src="/scripts/svg-attrs.js"></script>
     <script src="/scripts/divs-clock.js"></script>
+    <script src="/scripts/divs-notransition.js"></script>
     <script src="/scripts/canvas-clock.js"></script>
     <script src="/scripts/optimized-canvas-clock.js"></script>
     <script src="/scripts/main.js"></script>
@@ -22,10 +24,12 @@
 <div class="container">
     <div class="header">
         <ul class="nav nav-pills pull-right">
-            <li data-type="svg" class="active"><a href="#">SVG</a></li>
-            <li data-type="divs"><a href="#">DIVs</a></li>
+            <li data-type="svg" class="active"><a href="#">SVG.js</a></li>
+            <li data-type="svg-attrs" class="active"><a href="#">SVG</a></li>
+            <li data-type="divs"><a href="#">DIVs with transition</a></li>
+            <li data-type="divs-notransition"><a href="#">DIVs</a></li>
             <li data-type="canvas"><a href="#">Canvas</a></li>
-            <li data-type="opt-canvas"><a href="#">Optimized Canvas</a></li>
+            <li data-type="opt-canvas"><a href="#">Buffered canvas</a></li>
         </ul>
         <h3 class="text-muted">time demo
             <span class="fps"></span>

@@ -1,10 +1,5 @@
 var CanvasClock = $.inherit(Clock, {
 
-    __constructor: function() {
-        this.__base.apply(this,arguments);
-        $(app).on('smallTick', this.tick.bind(this));
-    },
-
     draw: function (domElem) {
         $(domElem).html('<div class="layer plate"></div><canvas class="layer" width="150" height="150"/>');
         this.canvas = $(domElem).find('canvas').get(0);
@@ -12,29 +7,22 @@ var CanvasClock = $.inherit(Clock, {
         ctx.translate(75, 75);
     },
 
-    tick: function(e,utctime) {
-        var self = this;
-        var localtime = utctime + self.offset;
-        self.showTime(localtime, 1000);
+    tick: function() {
+        //do nothing
     },
 
-    showTime: function(localtime, duration) {
-        this.context.clearRect(-75,-75,150, 150);
+    smallTick: function(e,utctime) {
+        this.showTime(utctime + this.offset);
+    },
 
-        var time = new Date(localtime + duration);
+    showTime: function(localtime) {
+        this.context.clearRect(-75,-75,150, 150);
+        var time = new Date(localtime);
         var h = time.getUTCHours(), m = time.getUTCMinutes(), s = time.getUTCSeconds(), ms = time.getUTCMilliseconds();
 
-        //console.log(time, duration);
-        if (m == 0) {
-            this.full.minutes++
-        }
-        if (s == 0) {
-            this.full.seconds++
-        }
-
         this.setHours(360 / 12 * ((h + m / 60) % 12));
-        this.setMinutes(this.full.minutes * 360 + 360 / 60 * m);
-        this.setSeconds(this.full.seconds * 360 + 360 / 60 * (s + ms/1000), duration);
+        this.setMinutes(360 / 60 * m);
+        this.setSeconds(360 / 60 * (s + ms/1000));
     },
 
     setHours: function (angle) {
@@ -63,7 +51,7 @@ var CanvasClock = $.inherit(Clock, {
         ctx.restore();
     },
 
-    setSeconds: function (angle, duration) {
+    setSeconds: function (angle) {
         var ctx = this.context;
         ctx.save();
         ctx.rotate(normalize(angle));

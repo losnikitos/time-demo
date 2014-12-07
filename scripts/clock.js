@@ -8,7 +8,8 @@ var Clock = $.inherit({
             self.draw(domElem);
             self.showTime(utctime + offset, 0);
 
-            //self.showTime(utctime + offset + 1000, 1000);
+            $(app).on('tick', this.tick.bind(this));
+            $(app).on('smallTick', this.smallTick.bind(this));
         }
     },
 
@@ -19,8 +20,8 @@ var Clock = $.inherit({
     },
 
     showTime: function (localtime, duration) {
-        var time = new Date(localtime + duration);
-        var h = time.getUTCHours(), m = time.getUTCMinutes(), s = time.getUTCSeconds();
+        var time = new Date(localtime + (duration ? duration : 0));
+        var h = time.getUTCHours(), m = time.getUTCMinutes(), s = time.getUTCSeconds(), ms = time.getUTCMilliseconds();
 
         //console.log(time, duration);
         if (m == 0) {
@@ -32,7 +33,7 @@ var Clock = $.inherit({
 
         this.setHours(360 / 12 * ((h + m / 60) % 12));
         this.setMinutes(this.full.minutes * 360 + 360 / 60 * m);
-        this.setSeconds(this.full.seconds * 360 + 360 / 60 * s, duration);
+        this.setSeconds(this.full.seconds * 360 + 360 / 60 * (s + ms/1000), duration);
     },
 
     smallTick: function(utctime) {

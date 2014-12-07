@@ -25,6 +25,7 @@
 .minutes {
     background: url(/images/arrow_m.svg);
 }
+
 .seconds {
     background: url(/images/arrow_s.svg);
 
@@ -33,6 +34,14 @@
     -moz-transition: -moz-transform 1s linear;
     -o-transition: -o-transform 1s linear;
     -ms-transition: -ms-transform 1s linear;
+}
+
+.seconds.notransition {
+    transition: none;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    -ms-transition: none;
 }
 
 .over {

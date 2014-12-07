@@ -1,9 +1,4 @@
 var DivsClock = $.inherit(Clock, {
-    __constructor: function() {
-        this.__base.apply(this,arguments);
-        $(app).on('tick', this.tick.bind(this));
-    },
-
     draw: function (domElem) {
         $(domElem).html('<div class="layer plate"></div>\n<div class="layer hours"></div>\n<div class="layer minutes"></div>\n<div class="layer seconds"></div>\n<div class="layer over"></div>');
         this.seconds = $(domElem).find('.seconds');

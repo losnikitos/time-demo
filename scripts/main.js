@@ -46,12 +46,19 @@ window.app = {
     showClocks: function (type) {
         var clockClass = {
             'svg': SvgClock,
+            'svg-attrs': SvgAttrs,
             'divs': DivsClock,
+            'divs-notransition': DivsNotransition,
             'canvas': CanvasClock,
             'opt-canvas': OptimizedCanvasClock
         }[type];
 
+        $(app).off('tick');
+        $(app).off('smallTick');
+        this.avgCount = 0;
+
         clockClass.globalInit();
+
 
         var now = Date.now();
 
@@ -87,6 +94,12 @@ window.app = {
     },
 
     countFps: function(){
+        if(this.avgCount==0) {
+            this.avgCount = 1;
+            this.avgFps = 0;
+            this.fps = 0;
+            return;
+        }
         this.avgFps+=this.fps;
         this.avgCount++;
         $('.fps').text(this.fps + ' fps');
